@@ -1,7 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Zap } from 'lucide-react'; 
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import HackHubLanding from '@/pages/Landingpage';
+
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const navigate = useNavigate(); 
+
+  const handleLoginClick = () => {
+    navigate('/login'); 
+  };
   return (
     <nav className={`fixed w-full z-50 transition-all duration-500 ${
         scrolled ? 'bg-black/80 backdrop-blur-2xl border-b border-white/10' : 'bg-transparent'
@@ -18,7 +27,7 @@ export default function Navbar() {
           </div>
           
           <div className="hidden md:flex items-center space-x-10 text-sm font-light">
-            {['Home', 'About', 'Features', 'Hackathons', 'Contact'].map((item) => (
+            {['Home', 'About', 'Features', 'Hackathons', 'Organize Your Hackathon'].map((item) => (
               <a 
                 key={item}
                 href={`#${item.toLowerCase()}`} 
@@ -31,12 +40,13 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center space-x-3">
-            <button className="px-6 py-2.5 text-sm font-light text-gray-300 hover:text-white transition-colors">
-              Login
-            </button>
-            <button className="px-6 py-2.5 text-sm font-light bg-gradient-to-r from-blue-600 to-purple-600 rounded-full hover:shadow-lg hover:shadow-blue-500/50 transition-all hover:scale-105">
-              Sign Up
-            </button>
+            
+            <button 
+            onClick={handleLoginClick}
+            className="px-6 py-2.5 text-sm font-light bg-gradient-to-r from-blue-600 to-purple-600 rounded-full hover:shadow-lg hover:shadow-blue-500/50 transition-all hover:scale-105">
+          
+            Sign In
+          </button>
           </div>
         </div>
       </nav>

@@ -28,15 +28,15 @@ export default function Herosec() {
   ]);
   return (
 
-    <section className="relative pt-40 pb-32 px-6">
+    <section className="relative pt-30 pb-20 px-6 ">
             <div className="max-w-6xl mx-auto text-center relative z-10">
               <div className="inline-flex items-center space-x-2 px-5 py-2.5 bg-white/5 backdrop-blur-xl rounded-full border border-white/10 mb-10 hover:bg-white/10 transition-colors">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                 <Sparkles className="w-4 h-4 text-blue-400" />
-                <span className="text-sm font-light text-gray-300">Powered by Advanced AI Technology</span>
+                <span className="text-xs font-light text-gray-300">Powered by Advanced AI Technology</span>
               </div>
               
-              <h1 className="text-7xl md:text-8xl font-bold tracking-tighter text-white mb-8 leading-none">
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-8 leading-none">
                 Revolutionizing
                 <br />
                 <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
@@ -44,16 +44,16 @@ export default function Herosec() {
                 </span>
               </h1>
               
-              <p className="text-xl font-light text-gray-400 mb-14 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-sm font-light text-gray-400 mb-14 max-w-3xl mx-auto leading-relaxed">
                 Experience the future of collaborative innovation. Manage, judge, and discover hackathons with intelligent automation and transparent evaluation.
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-5">
-                <button className="group px-10 py-5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full font-light text-lg hover:shadow-2xl hover:shadow-blue-500/50 transition-all hover:scale-105 flex items-center space-x-3">
-                  <span>Explore Hackathons</span>
+                <button className="group px-7 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full font-light text-lg hover:shadow-2xl hover:shadow-blue-500/50 transition-all hover:scale-105 flex items-center space-x-3">
+                  <span className="text-m">Explore Hackathons</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
-                <button className="group px-10 py-5 bg-white/5 backdrop-blur-xl text-white rounded-full font-light text-lg border border-white/10 hover:bg-white/10 transition-all hover:scale-105 flex items-center space-x-3">
+                <button className="group px-7 py-3 bg-white/5 backdrop-blur-xl text-white rounded-full font-light text-lg border border-white/10 hover:bg-white/10 transition-all hover:scale-105 flex items-center space-x-3">
                   <span>Watch Demo</span>
                   <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                     <ChevronRight className="w-4 h-4" />
@@ -65,11 +65,11 @@ export default function Herosec() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-24 max-w-4xl mx-auto">
                 {stats.map((stat, idx) => (
                   <div key={idx} className="group cursor-pointer">
-                    <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all hover:scale-105">
+                    <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4  border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all hover:scale-105">
                       <div className="text-blue-400 mb-3 group-hover:scale-110 transition-transform inline-block">
                         {stat.icon}
                       </div>
-                      <div className="text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent mb-1">
+                      <div className="text-2xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent mb-1">
                         {stat.value}
                       </div>
                       <div className="text-sm text-gray-500 font-light">{stat.label}</div>

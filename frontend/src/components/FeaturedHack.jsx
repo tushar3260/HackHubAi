@@ -42,13 +42,13 @@ export default function FeaturedHack() {
     }
   ];
     return (
-      <section id="hackathons" className="py-32 px-6 relative">
+      <section id="hackathons" className="py-3 px-6 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-6xl font-bold text-white mb-5 tracking-tight">
+            <h2 className="text-4xl font-bold text-white mb-5 tracking-tight">
               Featured Hackathons
             </h2>
-            <p className="text-xl font-light text-gray-400">Join the world's most innovative challenges</p>
+            <p className="text font-light text-gray-400">Join the world's most innovative challenges</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
