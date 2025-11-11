@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ElectricBorder from "./ElectricBorder";
 import { Calendar, Users, Award, TrendingUp } from 'lucide-react';
 
 export default function FeaturedHack() {
@@ -58,14 +57,7 @@ export default function FeaturedHack() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {hackathons.map((hack, idx) => (
-            <ElectricBorder
-              key={hack.id}
-              color="#7df9ff"
-              speed={0.7}
-              chaos={0.7}
-              thickness={1.5}
-              style={{ borderRadius: '16px' }}
-            >
+            
               <div
                 onMouseEnter={() => setActiveCard(idx)}
                 onMouseLeave={() => setActiveCard(null)}
@@ -107,7 +99,6 @@ export default function FeaturedHack() {
                   </button>
                 </div>
               </div>
-            </ElectricBorder>
           ))}
         </div>
       </div>

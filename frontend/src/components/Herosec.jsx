@@ -1,5 +1,5 @@
 import React from "react";
-import ElectricBorder from "./ElectricBorder.jsx";
+
 import { ChevronRight, Sparkles, Award, BarChart3, Globe, ArrowRight } from 'lucide-react';
 import BlurText from "./blurtxt";
 import { useState } from "react";
@@ -64,15 +64,9 @@ export default function Herosec() {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-24 max-w-4xl mx-auto">
-          {stats.map((stat, idx) => (
-            <ElectricBorder
-              key={idx}
-              color="#7df9ff"
-              speed={0.7}
-              chaos={0.7}
-              thickness={1.5}
-              style={{ borderRadius: '16px' }}
-            >
+          {stats.map((stat) => (
+            
+
               <div className="group cursor-pointer bg-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all hover:scale-105">
                 <div className="text-blue-400 mb-3 group-hover:scale-110 transition-transform inline-block">
                   {stat.icon}
@@ -82,7 +76,7 @@ export default function Herosec() {
                 </div>
                 <div className="text-sm text-gray-500 font-light">{stat.label}</div>
               </div>
-            </ElectricBorder>
+            
           ))}
         </div>
 
