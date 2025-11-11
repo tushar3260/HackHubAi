@@ -1,41 +1,46 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Zap, Mail, Lock, User, Eye, EyeOff, Github, Chrome, ArrowRight, Sparkles, Shield, CheckCircle2 } from 'lucide-react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-// LAZILY LOAD THE SEPARATE SPLINE COMPONENT 
 const LazySplineBackground = lazy(() => import('../components/SplineBackground')); 
 
 const HackHubAuth = () => {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    phone: '',
+    role: 'user'
   });
 
-  // 🛑 AGGRESSIVE JAVASCRIPT PRELOAD FUNCTION
+  // ✅ API Base URL (use import.meta.env for Vite)
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1';
+
   const preloadSplineAssets = () => {
-    // 1. Preconnect to the CDN for faster handshake
     const preconnect = document.createElement('link');
     preconnect.rel = 'preconnect';
     preconnect.href = 'https://prod.spline.design';
     document.head.appendChild(preconnect);
     
-    // 2. Preload the core runtime JS file
     const preloadScript = document.createElement('link');
     preloadScript.rel = 'preload';
     preloadScript.href = 'https://unpkg.com/@splinetool/runtime@0.9.x/build/spline-viewer.js';
     preloadScript.as = 'script';
     document.head.appendChild(preloadScript);
   };
-  // ------------------------------------------
 
   useEffect(() => {
-    // 🛑 EXECUTE PRELOAD IMMEDIATELY ON MOUNT
     preloadSplineAssets(); 
-
     const handleMouseMove = (e) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
@@ -45,11 +50,112 @@ const HackHubAuth = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError('');
+  };
+
+  // ✅ Handle Login
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    try {
+      const response = await axios.post(
+        `${API_BASE_URL}/users/login`,
+        {
+          email: formData.email,
+          password: formData.password
+        }
+      );
+
+      if (response.data.success) {
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        
+        setSuccess(response.data.message || 'Login successful! Redirecting...');
+        
+        setTimeout(() => {
+          navigate('/dashboard');
+        }, 1500);
+      }
+    } catch (err) {
+      console.error('Login error:', err);
+      setError(
+        err.response?.data?.message || 
+        'Login failed. Please check your credentials.'
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ✅ Handle Signup
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    // Frontend validation
+    if (!formData.name || !formData.email || !formData.password) {
+      setError('Please fill in all required fields');
+      setLoading(false);
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      setLoading(false);
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `${API_BASE_URL}/users/register`,
+        {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          phone: formData.phone || '',
+          role: formData.role
+        }
+      );
+
+      if (response.data.success) {
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        
+        setSuccess(response.data.message || 'Account created successfully! Redirecting...');
+        
+        setTimeout(() => {
+          navigate('/dashboard');
+        }, 1500);
+      }
+    } catch (err) {
+      console.error('Register error:', err);
+      setError(
+        err.response?.data?.message || 
+        'Registration failed. Please try again.'
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    if (isLogin) {
+      handleLogin(e);
+    } else {
+      handleSignup(e);
+    }
   };
 
   const features = [
@@ -65,12 +171,10 @@ const HackHubAuth = () => {
   return (
     <div className="min-h-screen bg-black text-white font-sans overflow-hidden flex items-center justify-center p-4 relative">
       
-      {/* SUSPENSE WRAPPER */}
       <Suspense fallback={<SplineFallback />}>
         <LazySplineBackground />
       </Suspense>
 
-      {/* Animated Background (Mouse movement effects) */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-10">
         <div 
           className="absolute w-64 h-64 bg-blue-500/10 rounded-full blur-3xl transition-transform duration-1000"
@@ -90,7 +194,6 @@ const HackHubAuth = () => {
         />
       </div>
 
-      {/* Logo (High Z-index: z-50) */}
       <a href="/" className="absolute top-4 left-4 md:top-6 md:left-6 flex items-center space-x-2 group cursor-pointer z-50">
         <div className="relative w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center overflow-hidden group-hover:scale-110 transition-transform">
           <Zap className="w-4 h-4 text-white relative z-10" />
@@ -100,10 +203,9 @@ const HackHubAuth = () => {
         </span>
       </a>
 
-      {/* Main Content Grid (High Z-index: z-40) */}
       <div className="w-full max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center relative z-40">
         
-        {/* Left Side - Compact */}
+        {/* Left Side */}
         <div className="hidden lg:block space-y-6">
           <div className="space-y-3">
             <div className="inline-flex items-center space-x-2 px-3 py-1.5 bg-white/5 backdrop-blur-xl rounded-full border border-white/10">
@@ -148,14 +250,17 @@ const HackHubAuth = () => {
           </div>
         </div>
 
-        {/* Right Side - Compact Form Container */}
+        {/* Right Side - Form */}
         <div className="w-full max-w-md mx-auto">
-          {/* Form Panel: z-30 ensures it sits clearly above background layers */}
           <div className="bg-white/5 backdrop-blur-2xl rounded-2xl p-6 border border-white/10 shadow-2xl relative z-30"> 
             
             <div className="flex items-center space-x-2 mb-6 p-1 bg-white/5 rounded-xl">
               <button
-                onClick={() => setIsLogin(true)}
+                onClick={() => {
+                  setIsLogin(true);
+                  setError('');
+                  setSuccess('');
+                }}
                 className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
                   isLogin
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/30'
@@ -165,7 +270,11 @@ const HackHubAuth = () => {
                 Login
               </button>
               <button
-                onClick={() => setIsLogin(false)}
+                onClick={() => {
+                  setIsLogin(false);
+                  setError('');
+                  setSuccess('');
+                }}
                 className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
                   !isLogin
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/30'
@@ -186,6 +295,18 @@ const HackHubAuth = () => {
                   : 'Start your innovation journey today'}
               </p>
             </div>
+
+            {/* Error & Success Messages */}
+            {error && (
+              <div className="mb-4 p-3 bg-red-500/10 border border-red-500/50 rounded-lg text-red-400 text-sm">
+                {error}
+              </div>
+            )}
+            {success && (
+              <div className="mb-4 p-3 bg-green-500/10 border border-green-500/50 rounded-lg text-green-400 text-sm">
+                {success}
+              </div>
+            )}
 
             <div className="space-y-2 mb-4">
               <button className="w-full flex items-center justify-center space-x-2 py-2.5 bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
@@ -209,24 +330,41 @@ const HackHubAuth = () => {
 
             <form onSubmit={handleSubmit} className="space-y-3">
               {!isLogin && (
-                <div>
-                  <label className="block text-xs font-light text-gray-400 mb-1.5">Full Name</label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" />
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="John Doe"
-                      className="w-full pl-10 pr-3 py-2.5 text-sm bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all"
-                    />
+                <>
+                  <div>
+                    <label className="block text-xs font-light text-gray-400 mb-1.5">Full Name *</label>
+                    <div className="relative">
+                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" />
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="John Doe"
+                        required={!isLogin}
+                        className="w-full pl-10 pr-3 py-2.5 text-sm bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all"
+                      />
+                    </div>
                   </div>
-                </div>
+
+                  <div>
+                    <label className="block text-xs font-light text-gray-400 mb-1.5">Phone Number (Optional)</label>
+                    <div className="relative">
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="+91 98765 43210"
+                        className="w-full pl-3 pr-3 py-2.5 text-sm bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all"
+                      />
+                    </div>
+                  </div>
+                </>
               )}
 
               <div>
-                <label className="block text-xs font-light text-gray-400 mb-1.5">Email Address</label>
+                <label className="block text-xs font-light text-gray-400 mb-1.5">Email Address *</label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" />
                   <input
@@ -235,13 +373,14 @@ const HackHubAuth = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="you@example.com"
+                    required
                     className="w-full pl-10 pr-3 py-2.5 text-sm bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-light text-gray-400 mb-1.5">Password</label>
+                <label className="block text-xs font-light text-gray-400 mb-1.5">Password *</label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" />
                   <input
@@ -250,6 +389,7 @@ const HackHubAuth = () => {
                     value={formData.password}
                     onChange={handleChange}
                     placeholder="••••••••"
+                    required
                     className="w-full pl-10 pr-10 py-2.5 text-sm bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all"
                   />
                   <button
@@ -264,7 +404,7 @@ const HackHubAuth = () => {
 
               {!isLogin && (
                 <div>
-                  <label className="block text-xs font-light text-gray-400 mb-1.5">Confirm Password</label>
+                  <label className="block text-xs font-light text-gray-400 mb-1.5">Confirm Password *</label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" />
                     <input
@@ -273,6 +413,7 @@ const HackHubAuth = () => {
                       value={formData.confirmPassword}
                       onChange={handleChange}
                       placeholder="••••••••"
+                      required={!isLogin}
                       className="w-full pl-10 pr-3 py-2.5 text-sm bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all"
                     />
                   </div>
@@ -296,17 +437,30 @@ const HackHubAuth = () => {
 
               <button
                 type="submit"
-                className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-medium hover:shadow-xl hover:shadow-blue-500/50 transition-all hover:scale-105 flex items-center justify-center space-x-2 group"
+                disabled={loading}
+                className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-medium hover:shadow-xl hover:shadow-blue-500/50 transition-all hover:scale-105 flex items-center justify-center space-x-2 group disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <span>{isLogin ? 'Login' : 'Create Account'}</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span>{loading ? 'Please wait...' : (isLogin ? 'Login' : 'Create Account')}</span>
+                {!loading && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
               </button>
             </form>
 
             <p className="text-center text-xs text-gray-400 font-light mt-4">
               {isLogin ? "Don't have an account? " : "Already have an account? "}
               <button
-                onClick={() => setIsLogin(!isLogin)}
+                onClick={() => {
+                  setIsLogin(!isLogin);
+                  setError('');
+                  setSuccess('');
+                  setFormData({
+                    name: '',
+                    email: '',
+                    password: '',
+                    confirmPassword: '',
+                    phone: '',
+                    role: 'user'
+                  });
+                }}
                 className="text-blue-400 hover:text-blue-300 font-medium transition-colors"
               >
                 {isLogin ? 'Sign up' : 'Login'}
