@@ -58,8 +58,10 @@ const HackHubLanding = () => {
       </div>
 
       <Navbar />
-
+      
       <Herosec />
+      
+      
 
       {/* Featured Hackathons */}
       <FeaturedHack />
@@ -87,7 +89,7 @@ const HackHubLanding = () => {
       </section>
 
       {/* CTA Section - Compact */}
-      <section className="py-16 px-6">
+      <section className="py-1 px-6">
         <div className="max-w-4xl mx-auto text-center bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-2xl rounded-2xl p-10 md:p-12 border border-white/10 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
           <div className="relative z-10">

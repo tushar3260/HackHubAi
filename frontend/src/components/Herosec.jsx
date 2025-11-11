@@ -1,6 +1,7 @@
 import React from "react";
 import ElectricBorder from "./ElectricBorder.jsx";
 import { ChevronRight, Sparkles, Award, BarChart3, Globe, ArrowRight } from 'lucide-react';
+import BlurText from "./blurtxt";
 import { useState } from "react";
 
 export default function Herosec() {
