@@ -28,35 +28,9 @@ const HackHubLanding = () => {
 
   
 
-  const steps = [
-    {
-      icon: <Sparkles className="w-10 h-10" />,
-      title: "Organize",
-      desc: "Create and manage hackathons with AI-powered tools",
-      color: "from-blue-500 to-cyan-500"
-    },
-    {
-      icon: <Users className="w-10 h-10" />,
-      title: "Participate",
-      desc: "Join exciting challenges and collaborate with innovators",
-      color: "from-purple-500 to-pink-500"
-    },
-    {
-      icon: <Award className="w-10 h-10" />,
-      title: "Evaluate",
-      desc: "Fair AI-assisted judging with transparent results",
-      color: "from-green-500 to-emerald-500"
-    }
-  ];
+  
 
-  const features = [
-    { icon: <Brain className="w-5 h-5" />, text: "AI-assisted judging for fair evaluation" },
-    { icon: <BarChart3 className="w-5 h-5" />, text: "Real-time transparent leaderboards" },
-    { icon: <Cpu className="w-5 h-5" />, text: "Automated workflow management" },
-    { icon: <Users className="w-5 h-5" />, text: "Smart team matching algorithms" },
-    { icon: <Zap className="w-5 h-5" />, text: "Instant notifications and updates" },
-    { icon: <Globe className="w-5 h-5" />, text: "Advanced analytics dashboard" }
-  ];
+  
 
   
 
