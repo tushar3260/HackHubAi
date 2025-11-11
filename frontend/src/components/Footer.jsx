@@ -32,7 +32,7 @@ const Footer = () => {
             </div>
           </div>
           
-          <div className="text-center pt-8 border-t border-white/10">
+          <div className="text-center pt- border-t border-white/10">
             <p className="text-sm font-light text-gray-600">
               © 2025 HackHub AI. All rights reserved. Built with innovation and powered by AI.
             </p>
