@@ -4,7 +4,7 @@ import {  ChevronRight, Sparkles, Award, BarChart3, Globe, ArrowRight } from 'lu
 import { useState } from "react";
 
 export default function Herosec() {
-    const [stats, setStats] = useState([
+    const [stats] = useState([
     {
       value: "10,000+",
       label: "Global Hackathons",
