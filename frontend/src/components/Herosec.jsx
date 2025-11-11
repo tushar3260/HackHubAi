@@ -1,6 +1,18 @@
 import React from "react";
+<<<<<<< HEAD
 
 import { ChevronRight, Sparkles, Award, BarChart3, Globe, ArrowRight } from 'lucide-react';
+=======
+import ElectricBorder from "./ElectricBorder.jsx";
+import {
+  ChevronRight,
+  Sparkles,
+  Award,
+  BarChart3,
+  Globe,
+  ArrowRight,
+} from "lucide-react";
+>>>>>>> 1ace19cc1d99b0a7e08d6a3eda529cb204413320
 import BlurText from "./blurtxt";
 import { useState } from "react";
 
@@ -9,32 +21,33 @@ export default function Herosec() {
     {
       value: "10,000+",
       label: "Global Hackathons",
-      icon: <Globe className="w-6 h-6" />
+      icon: <Globe className="w-6 h-6" />,
     },
     {
       value: "500+",
       label: "Active Organizers",
-      icon: <Award className="w-6 h-6" />
+      icon: <Award className="w-6 h-6" />,
     },
     {
       value: "50,000+",
       label: "Participants",
-      icon: <BarChart3 className="w-6 h-6" />
+      icon: <BarChart3 className="w-6 h-6" />,
     },
     {
       value: "80%",
       label: "Time Saved",
-      icon: <Sparkles className="w-6 h-6" />
-    }
+      icon: <Sparkles className="w-6 h-6" />,
+    },
   ]);
   return (
-
     <section className="relative pt-30 pb-20 px-6 ">
       <div className="max-w-6xl mx-auto text-center relative z-10">
         <div className="inline-flex items-center space-x-2 px-5 py-2.5 bg-white/5 backdrop-blur-xl rounded-full border border-white/10 mb-10 hover:bg-white/10 transition-colors">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
           <Sparkles className="w-4 h-4 text-blue-400" />
-          <span className="text-xs font-light text-gray-300">Powered by Advanced AI Technology</span>
+          <span className="text-xs font-light text-gray-300">
+            Powered by Advanced AI Technology
+          </span>
         </div>
 
         <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-8 leading-none">
@@ -46,7 +59,9 @@ export default function Herosec() {
         </h1>
 
         <p className="text-sm font-light text-gray-400 mb-14 max-w-3xl mx-auto leading-relaxed">
-          Experience the future of collaborative innovation. Manage, judge, and discover hackathons with intelligent automation and transparent evaluation.
+          Experience the future of collaborative innovation. Manage, judge, and
+          discover hackathons with intelligent automation and transparent
+          evaluation.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-5">
@@ -74,12 +89,13 @@ export default function Herosec() {
                 <div className="text-2xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent mb-1">
                   {stat.value}
                 </div>
-                <div className="text-sm text-gray-500 font-light">{stat.label}</div>
+                <div className="text-sm text-gray-500 font-light">
+                  {stat.label}
+                </div>
               </div>
             
           ))}
         </div>
-
       </div>
     </section>
   );
