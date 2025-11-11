@@ -1,5 +1,5 @@
 import React from "react";
- 
+import BlurText from "./blurtxt";
 import {  ChevronRight, Sparkles, Award, BarChart3, Globe, ArrowRight } from 'lucide-react';
 import { useState } from "react";
 
@@ -28,8 +28,8 @@ export default function Herosec() {
   ]);
   return (
 
-    <section className="relative pt-30 pb-20 px-6 ">
-            <div className="max-w-6xl mx-auto text-center relative z-10">
+    <section className="relative pt-20 pb-20 px-6 ">
+            <div className="max-w-6xl mx-auto text-center relative ">
               <div className="inline-flex items-center space-x-2 px-5 py-2.5 bg-white/5 backdrop-blur-xl rounded-full border border-white/10 mb-10 hover:bg-white/10 transition-colors">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                 <Sparkles className="w-4 h-4 text-blue-400" />
@@ -37,12 +37,13 @@ export default function Herosec() {
               </div>
               
               <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-8 leading-none">
-                Revolutionizing
-                <br />
-                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
-                  Hackathon Management
-                </span>
-              </h1>
+  Revolutionizing
+  <br />
+  <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient filter drop-shadow-[0_0_15px_rgba(147,51,234,0.5)]">
+    Hackathon Management
+  </span>
+</h1>
+
               
               <p className="text-sm font-light text-gray-400 mb-14 max-w-3xl mx-auto leading-relaxed">
                 Experience the future of collaborative innovation. Manage, judge, and discover hackathons with intelligent automation and transparent evaluation.
