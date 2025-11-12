@@ -10,6 +10,7 @@ export default function Navbar() {
   const [activeLink, setActiveLink] = useState("home");
   const navigate = useNavigate();
 
+  // scroll detection
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
@@ -34,6 +35,7 @@ export default function Navbar() {
     }, 1500);
   };
 
+  // smooth scroll handler
   const handleScrollTo = (id) => {
     setActiveLink(id);
     const section = document.querySelector(`#${id}`);

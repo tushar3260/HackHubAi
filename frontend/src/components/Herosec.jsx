@@ -1,6 +1,14 @@
 import React from "react";
-
-import { ChevronRight, Sparkles, Award, BarChart3, Globe, ArrowRight } from 'lucide-react';
+import ElectricBorder from "./ElectricBorder.jsx";
+import TextType from './TextType';
+import {
+  ChevronRight,
+  Sparkles,
+  Award,
+  BarChart3,
+  Globe,
+  ArrowRight,
+} from "lucide-react";
 import BlurText from "./blurtxt";
 import { useState } from "react";
 
@@ -32,11 +40,23 @@ export default function Herosec() {
   return (
     <section className="relative pt-18 pb-20 px-6 ">
       <div className="max-w-6xl mx-auto text-center relative z-10">
-        <div className="inline-flex items-center space-x-2 px-5 py-2.5 bg-white/5 backdrop-blur-xl rounded-full border border-white/10 mb-10 hover:bg-white/10 transition-colors">
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          <Sparkles className="w-4 h-4 text-blue-400" />
-          <span className="text-xs font-light text-gray-300">
-            Powered by Advanced AI Technology
+        <div className="inline-flex items-center space-x-2 px-6 py-2.5 
+bg-white/10 backdrop-blur-2xl rounded-full border border-white/20 
+mb-10 transition-all duration-300 ease-in-out 
+hover:bg-white/20 hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] group">
+
+          {/* Glowing Dot */}
+          <div className="relative">
+            <div className="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-ping absolute opacity-75"></div>
+            <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full relative"></div>
+          </div>
+
+          {/* Sparkles Icon */}
+          <Sparkles className="w-4 h-4 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />
+
+          {/* Text */}
+          <span className="text-[13px] font-medium text-gray-200 tracking-wide group-hover:text-white transition-colors duration-300">
+            Powered by <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 font-semibold">Advanced AI</span> Technology
           </span>
         </div>
 
@@ -128,42 +148,69 @@ export default function Herosec() {
         </div>
 
 
-        <p className="text-sm font-light text-gray-400 mb-14 max-w-3xl mx-auto leading-relaxed">
-          Experience the future of collaborative innovation. Manage, judge, and
-          discover hackathons with intelligent automation and transparent
-          evaluation.
+        <p className="text-m text-gray-400 mb-14 max-w-3xl mx-auto leading-relaxed font-grotesk">
+          
+
+
+<TextType 
+  text={["Experience the future of collaborative innovation. Manage, judge, and discover hackathons with intelligent automation and transparent evaluation."]}
+  typingSpeed={35}
+  pauseDuration={1500}
+  showCursor={true}
+  cursorCharacter="|"
+/>
+
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-5">
-          <button className="group px-7 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full font-light text-lg hover:shadow-2xl hover:shadow-blue-500/50 transition-all hover:scale-105 flex items-center space-x-3">
-            <span className="text-m">Explore Hackathons</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
-          <button className="group px-7 py-3 bg-white/5 backdrop-blur-xl text-white rounded-full font-light text-lg border border-white/10 hover:bg-white/10 transition-all hover:scale-105 flex items-center space-x-3">
-            <span>Watch Demo</span>
-            <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-              <ChevronRight className="w-4 h-4" />
-            </div>
-          </button>
-        </div>
+        <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+
+  {/* 🔥 Primary Button — Explore Hackathons */}
+  <button className="group relative px-8 py-3.5 rounded-full overflow-hidden font-grotesk text-lg text-white 
+  bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 
+  shadow-md shadow-purple-500/30 transition-all duration-500 ease-out 
+  hover:scale-110 hover:shadow-[0_0_25px_rgba(147,51,234,0.6)]">
+
+    {/* moving gradient shine layer */}
+    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 blur-md animate-shine"></span>
+
+    <span className="relative flex items-center space-x-3">
+      <span className="text-[15px] tracking-wide font-semibold">Explore Hackathons</span>
+      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+    </span>
+  </button>
+
+  {/* 🎥 Secondary Button — Watch Demo */}
+  <button className="group relative px-8 py-3.5 rounded-full font-grotesk text-lg text-gray-200 
+  border border-white/10 bg-white/5 backdrop-blur-2xl 
+  hover:bg-white/15 transition-all duration-300 hover:scale-105 
+  flex items-center space-x-3 shadow-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]">
+
+    <span className="text-[15px] tracking-wide font-medium">Watch Demo</span>
+    <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center 
+    group-hover:bg-white/20 transition-all duration-300">
+      <ChevronRight className="w-4 h-4 text-white" />
+    </div>
+  </button>
+</div>
+
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-24 max-w-4xl mx-auto">
           {stats.map((stat) => (
-            
 
-              <div className="group cursor-pointer bg-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all hover:scale-105">
-                <div className="text-blue-400 mb-3 group-hover:scale-110 transition-transform inline-block">
-                  {stat.icon}
-                </div>
-                <div className="text-2xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-gray-500 font-light">
-                  {stat.label}
-                </div>
+
+            <div className="group cursor-pointer bg-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all hover:scale-105">
+              <div className="text-blue-400 mb-3 group-hover:scale-110 transition-transform inline-block">
+                {stat.icon}
               </div>
-            
+              <div className="text-2xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent mb-1">
+                {stat.value}
+              </div>
+              <div className="text-sm text-gray-500 font-light">
+                {stat.label}
+              </div>
+            </div>
+
           ))}
         </div>
       </div>

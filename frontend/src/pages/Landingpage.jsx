@@ -15,6 +15,7 @@ import Herosec from "../components/Herosec.jsx";
 import FeaturedHack from "../components/FeaturedHack.jsx";
 import AiFeatures from "../components/AiFeatures.jsx";
 import HowIt from "@/components/HowIt";
+import TrustedBy from '@/components/TrustedBy';
 
 const HackHubLanding = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -118,7 +119,6 @@ const HackHubLanding = () => {
         >
           <FeaturedHack />
         </motion.div>
-
         {/* AI Features */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -140,30 +140,7 @@ const HackHubLanding = () => {
         </motion.div>
 
         {/* Trusted By */}
-        <motion.section
-          className="py-16 px-6"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-        >
-          <div className="max-w-7xl mx-auto text-center">
-            <p className="text-xs font-light text-gray-400 mb-8 tracking-widest uppercase">
-              Trusted by innovators worldwide
-            </p>
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-6 md:gap-8">
-              {["Google", "Microsoft", "Amazon", "Meta", "Apple", "Tesla"].map(
-                (company) => (
-                  <div key={company} className="flex items-center justify-center">
-                    <div className="text-xl md:text-2xl font-light text-gray-500 hover:text-white transition-colors cursor-pointer">
-                      {company}
-                    </div>
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-        </motion.section>
+        <TrustedBy />
 
         {/* CTA Section */}
         <motion.section
