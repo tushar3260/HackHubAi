@@ -11,10 +11,8 @@
   },
   "dependencies": {
     "@splinetool/react-spline": "^4.1.0",
-<<<<<<< HEAD
-=======
+    "@studio-freight/lenis": "^1.0.42",
     "axios": "^1.13.2",
->>>>>>> 1ace19cc1d99b0a7e08d6a3eda529cb204413320
     "framer-motion": "^12.23.24",
     "gsap": "^3.13.0",
     "lucide-react": "^0.553.0",

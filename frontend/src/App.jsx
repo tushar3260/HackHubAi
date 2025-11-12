@@ -7,17 +7,7 @@ import Loginpage from './pages/Loginpage.jsx';
 import LoadingPage from './pages/Loadingpage.jsx';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate loading (you can replace with actual logic later)
-    const timer = setTimeout(() => setIsLoading(false), 4000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return <LoadingPage />;
-  }
+ 
 
   return (
     <Router>

@@ -1,17 +1,12 @@
 import React from "react";
-import ElectricBorder from "./ElectricBorder.jsx";
-import {
-  ChevronRight,
-  Sparkles,
-  Award,
-  BarChart3,
-  Globe,
-  ArrowRight,
-} from "lucide-react";
+
+import { ChevronRight, Sparkles, Award, BarChart3, Globe, ArrowRight } from 'lucide-react';
 import BlurText from "./blurtxt";
 import { useState } from "react";
 
 export default function Herosec() {
+  const text1 = "Revolutionizing";
+  const text2 = "Hackathon Management";
   const [stats] = useState([
     {
       value: "10,000+",
@@ -45,13 +40,93 @@ export default function Herosec() {
           </span>
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-8 leading-none">
-          Revolutionizing
-          <br />
-          <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
-            Hackathon Management
-          </span>
-        </h1>
+         {/* Heading Animation */}
+        <div className="min-h-auto bg-black flex items-center justify-center p-8">
+          <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight text-center">
+            <div className="mb-4">
+              {text1.split("").map((char, i) => (
+                <span
+                  key={i}
+                  className="char-animate"
+                  style={{ animationDelay: `${i * 0.08}s` }}
+                >
+                  {char}
+                </span>
+              ))}
+            </div>
+            <div className="gradient-line">
+              {text2.split("").map((char, i) => (
+                <span
+                  key={i}
+                  className="gradient-char"
+                  style={{ animationDelay: `${1.2 + i * 0.1}s` }}
+                >
+                  {char}
+                </span>
+              ))}
+            </div>
+          </h1>
+
+          <style jsx>{`
+            .char-animate {
+              display: inline-block;
+              opacity: 0;
+              animation: charFadeIn 0.8s ease-out forwards;
+            }
+
+            .gradient-line {
+              display: inline-block;
+            }
+
+            .gradient-char {
+              display: inline-block;
+              opacity: 0;
+              background: linear-gradient(90deg, #60a5fa, #a78bfa, #ec4899);
+              background-size: 200% auto;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+              animation: charFloatIn 1s ease-out forwards, shine 3s linear infinite;
+              filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.5));
+            }
+
+            @keyframes charFadeIn {
+              from {
+                opacity: 0;
+                transform: translateY(80px) rotateX(-90deg);
+                filter: blur(8px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+                filter: blur(0px);
+              }
+            }
+
+            @keyframes charFloatIn {
+              0% {
+                opacity: 0;
+                transform: translateY(120px) scale(0.3) rotateZ(-15deg);
+                filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0)) blur(15px);
+              }
+              50% {
+                transform: translateY(-10px) scale(1.1) rotateZ(2deg);
+              }
+              100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateZ(0deg);
+                filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.5)) blur(0px);
+              }
+            }
+
+            @keyframes shine {
+              to {
+                background-position: 200% center;
+              }
+            }
+          `}</style>
+        </div>
+
 
         <p className="text-sm font-light text-gray-400 mb-14 max-w-3xl mx-auto leading-relaxed">
           Experience the future of collaborative innovation. Manage, judge, and
