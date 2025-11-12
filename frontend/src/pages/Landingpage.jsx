@@ -6,6 +6,7 @@ import Herosec from '../components/Herosec.jsx';
 import FeaturedHack from '../components/FeaturedHack.jsx';
 import AiFeatures from '../components/AiFeatures.jsx';
 import HowIt from '@/components/HowIt';
+import TrustedBy from '@/components/TrustedBy';
 
 const HackHubLanding = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -73,20 +74,8 @@ const HackHubLanding = () => {
       <HowIt />
 
       {/* Trusted By - Compact */}
-      <section className="py-16 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-xs font-light text-gray-600 mb-8 tracking-widest uppercase">Trusted by innovators worldwide</p>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-6 md:gap-8">
-            {['Google', 'Microsoft', 'Amazon', 'Meta', 'Apple', 'Tesla'].map((company) => (
-              <div key={company} className="flex items-center justify-center">
-                <div className="text-xl md:text-2xl font-light text-gray-700 hover:text-gray-500 transition-colors cursor-pointer">
-                  {company}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TrustedBy />
+      
 
       {/* CTA Section - Compact */}
       <section className="py-1 px-6">
