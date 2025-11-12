@@ -31,7 +31,7 @@ export default function Navbar() {
               <a 
                 key={item}
                 href={`#${item.toLowerCase()}`} 
-                className="text-gray-400 hover:text-white transition-colors relative group"
+                className="text-gray-400 hover:text-white transition-colors relative group font-bold"
               >
                 {item}
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300" />

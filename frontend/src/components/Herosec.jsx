@@ -1,8 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
-
-import { ChevronRight, Sparkles, Award, BarChart3, Globe, ArrowRight } from 'lucide-react';
-=======
 import ElectricBorder from "./ElectricBorder.jsx";
 import {
   ChevronRight,
@@ -12,7 +8,6 @@ import {
   Globe,
   ArrowRight,
 } from "lucide-react";
->>>>>>> 1ace19cc1d99b0a7e08d6a3eda529cb204413320
 import BlurText from "./blurtxt";
 import { useState } from "react";
 
@@ -40,7 +35,7 @@ export default function Herosec() {
     },
   ]);
   return (
-    <section className="relative pt-30 pb-20 px-6 ">
+    <section className="relative pt-18 pb-20 px-6 ">
       <div className="max-w-6xl mx-auto text-center relative z-10">
         <div className="inline-flex items-center space-x-2 px-5 py-2.5 bg-white/5 backdrop-blur-xl rounded-full border border-white/10 mb-10 hover:bg-white/10 transition-colors">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
