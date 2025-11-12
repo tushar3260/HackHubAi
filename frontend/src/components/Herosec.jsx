@@ -1,5 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
 import ElectricBorder from "./ElectricBorder.jsx";
 import TextType from './TextType';
 import {
@@ -10,10 +9,6 @@ import {
   Globe,
   ArrowRight,
 } from "lucide-react";
-=======
-
-import { ChevronRight, Sparkles, Award, BarChart3, Globe, ArrowRight } from 'lucide-react';
->>>>>>> 3fcd4f7b5caf8190221b2ed36caaa2aae4ef504e
 import BlurText from "./blurtxt";
 import { useState } from "react";
 
@@ -65,16 +60,6 @@ hover:bg-white/20 hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(59,130,246,0.3)
           </span>
         </div>
 
-<<<<<<< HEAD
-
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-8 leading-none">
-          Revolutionizing
-          <br />
-          <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
-            Hackathon Management
-          </span>
-        </h1>
-=======
          {/* Heading Animation */}
         <div className="min-h-auto bg-black flex items-center justify-center p-8">
           <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight text-center">
@@ -162,7 +147,6 @@ hover:bg-white/20 hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(59,130,246,0.3)
           `}</style>
         </div>
 
->>>>>>> 3fcd4f7b5caf8190221b2ed36caaa2aae4ef504e
 
         <p className="text-m text-gray-400 mb-14 max-w-3xl mx-auto leading-relaxed font-grotesk">
           
