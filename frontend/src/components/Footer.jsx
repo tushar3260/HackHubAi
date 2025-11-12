@@ -1,61 +1,182 @@
 import React from 'react';
-import { Zap } from 'lucide-react';
+import { Zap, Mail, Phone } from 'lucide-react';
 
 const Footer = () => {
+  const footerSections = [
+    {
+      title: 'Platform',
+      links: [
+        'Brand Solutions',
+        'Talent Sourcing',
+        'Smart Screening',
+        'Assessment Tools',
+        'Interview Suite',
+        'Automation'
+      ]
+    },
+    {
+      title: 'Opportunities',
+      links: [
+        'Challenges',
+        'Assessments',
+        'Hackathons',
+        'Webinars',
+        'Events',
+        'Workshops'
+      ]
+    },
+    {
+      title: 'Career',
+      links: [
+        'Internships',
+        'Jobs',
+        'Scholarships'
+      ]
+    },
+    {
+      title: 'Learn',
+      links: [
+        'Courses',
+        'Articles',
+        'Tutorials',
+        'Resources'
+      ]
+    },
+    {
+      title: 'Practice',
+      links: [
+        'Interview Prep',
+        'Coding Challenges',
+        'Mock Tests'
+      ]
+    }
+  ];
+
   return (
-    <footer className="relative py-16 px-6 border-t border-white/10 overflow-hidden">
-      {/* subtle animated gradient line at top of footer */}
-      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-[gradientFlow_6s_ease_infinite]" />
+    <footer className="relative py-16 px-6 bg-black border-t border-gray-800 overflow-hidden">
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/5 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* upper section */}
+        {/* Upper section */}
         <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 mb-12">
           
-          {/* logo section */}
-          <div className="flex items-center space-x-3 group">
-            <div className="w-11 h-11 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-600/30 group-hover:scale-105 transition-transform duration-300">
+          {/* Logo section */}
+          <div className="flex items-center space-x-3">
+            <div className="w-11 h-11 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-2xl flex items-center justify-center">
               <Zap className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-light bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent tracking-wide">
+            <span className="text-2xl font-semibold text-white">
               HackHub AI
             </span>
           </div>
 
-          {/* navigation links */}
-          <div className="flex items-center space-x-10 text-sm font-light text-gray-400">
+          {/* Navigation links */}
+          <div className="flex items-center space-x-10 text-sm text-gray-400">
             {['Privacy', 'Terms', 'Support', 'Docs', 'Blog'].map((link) => (
               <a
                 key={link}
                 href="#"
-                className="hover:text-white relative after:content-[''] after:absolute after:w-0 after:h-[1px] after:bg-gradient-to-r after:from-blue-400 after:to-purple-500 after:left-0 after:-bottom-1 hover:after:w-full after:transition-all after:duration-300 transition-colors"
+                className="hover:text-white transition-colors"
               >
                 {link}
               </a>
             ))}
           </div>
 
-          {/* social icons */}
+          {/* Social icons */}
           <div className="flex items-center space-x-4">
-            {['Twitter', 'GitHub', 'Discord'].map((social) => (
+            {['T', 'G', 'D'].map((social, idx) => (
               <a
                 key={social}
                 href="#"
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-gradient-to-r hover:from-blue-500/30 hover:to-purple-500/30 flex items-center justify-center border border-white/10 hover:border-white/20 transition-all duration-300 backdrop-blur-sm"
+                className="w-10 h-10 rounded-full bg-gray-900 hover:bg-gray-800 flex items-center justify-center border border-gray-800 hover:border-gray-700 transition-all"
               >
-                <span className="text-xs text-gray-300 font-medium">{social[0]}</span>
+                <span className="text-sm text-gray-400">{social}</span>
               </a>
             ))}
           </div>
         </div>
 
-        {/* divider + bottom text */}
-        <div className="pt-6 border-t border-white/10 text-center">
-          <p className="text-sm font-light text-gray-500">
-            © 2025 <span className="text-gray-300 font-normal">HackHub AI</span>. Built with{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 font-medium">
+        {/* Main content grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-12 mb-12 border-t border-gray-800 pt-12">
+          {/* Brand & Contact Column */}
+          <div className="lg:col-span-1">
+            <p className="text-sm text-gray-400 mb-8">
+              Built with <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">innovation</span> for the future
+            </p>
+
+            {/* Contact Section */}
+            <div className="space-y-4">
+              <h3 className="text-base text-white mb-3">Stay Connected</h3>
+              
+              <div className="space-y-3">
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">Sales Inquiries</p>
+                  <a href="mailto:sales@hackhub.ai" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm">
+                    <Mail className="w-4 h-4" />
+                    <span>sales@hackhub.ai</span>
+                  </a>
+                </div>
+
+                <div>
+                  <a href="tel:+919876543210" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm">
+                    <Phone className="w-4 h-4" />
+                    <span>+91-9876543210</span>
+                  </a>
+                  <p className="text-xs text-gray-500 ml-6">(Mon to Fri, 10:00 AM to 7:00 PM)</p>
+                </div>
+
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">Support Inquiries</p>
+                  <a href="mailto:support@hackhub.ai" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm">
+                    <Mail className="w-4 h-4" />
+                    <span>support@hackhub.ai</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Stay Updated */}
+              <div className="mt-8">
+                <h3 className="text-base text-white mb-2">Stay Updated</h3>
+                <p className="text-xs text-gray-400 leading-relaxed">
+                  Get the latest opportunities and updates to showcase your talent and accelerate your career
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Links Columns */}
+          {footerSections.map((section) => (
+            <div key={section.title}>
+              <h3 className="text-base text-white mb-4">{section.title}</h3>
+              <ul className="space-y-2.5">
+                {section.links.map((link) => (
+                  <li key={link}>
+                    <a
+                      href="#"
+                      className="text-sm text-gray-400 hover:text-white transition-colors inline-block"
+                    >
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Divider + bottom text */}
+        <div className="pt-6 border-t border-gray-800 text-center">
+          <p className="text-sm text-gray-500">
+            © 2025 <span className="text-gray-300">HackHub AI</span>. All rights reserved. Built with{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
               innovation
             </span>{' '}
-            and powered by <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 font-medium">AI</span>.
+            and powered by{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+              AI
+            </span>.
           </p>
         </div>
       </div>
@@ -64,4 +185,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
